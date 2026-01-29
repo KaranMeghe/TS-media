@@ -15,14 +15,15 @@ const usersSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder.addCase(fetchUsers.pending, (state) => {
-      state.isLoading = false;
+      state.isLoading = true;
     });
     builder.addCase(fetchUsers.fulfilled, (state, action) => {
+      state.isLoading = false;
       state.users = action.payload;
     });
     builder.addCase(fetchUsers.rejected, (state, action) => {
+      state.isLoading = false;
       state.error = action.error.message ?? 'Something went wrong';
-      console.log(state.error);
     });
   },
 });

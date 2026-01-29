@@ -1,16 +1,20 @@
 /** @format */
 
-import { fetchUsers } from '../../redux/features/users/thunks/fetchUsersThunks';
-import { useEffect } from 'react';
-import { useAppDispatch } from '../../redux/store/hooks';
+import Skeleton from '../Skeleton/Skeleton';
+import { useUsers } from './useUsers';
 
 const UsersList = () => {
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    dispatch(fetchUsers());
-  }, [dispatch]);
+  const { isLoading, users, error } = useUsers();
 
-  return <div>Users List</div>;
+  {
+    if (isLoading) return <Skeleton times={users.length} />;
+  }
+
+  {
+    if (error) return <div>{error}</div>;
+  }
+
+  return <div>Users list</div>;
 };
 
 export default UsersList;
