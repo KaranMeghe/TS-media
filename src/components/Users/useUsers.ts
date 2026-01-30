@@ -2,14 +2,19 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../redux/store/hooks';
 import { fetchUsers } from '../../redux/features/users/thunks/fetchUsersThunks';
+import { addNewUser } from '../../redux/features/users/thunks/addNewUserThunks';
 
 export const useUsers = () => {
   const dispatch = useAppDispatch();
-  const { isLoading, users, error } = useAppSelector((state) => state.users);
+  const { users, isUserCreating, isUserFetching, fetchError, createUserError } = useAppSelector((state) => state.users);
 
   useEffect(() => {
     dispatch(fetchUsers());
   }, [dispatch]);
 
-  return { isLoading, users, error };
+  const handleAddClick = () => {
+    dispatch(addNewUser());
+  };
+
+  return { users, handleAddClick, isUserCreating, isUserFetching, fetchError, createUserError };
 };

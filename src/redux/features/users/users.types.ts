@@ -7,6 +7,8 @@ export interface USER {
 
 export interface UsersProps {
   users: USER[];
-  isLoading: boolean;
-  error: string | null;
+  isUserFetching: boolean;
+  isUserCreating: boolean;
+  fetchError: null | string;
+  createUserError: null | string;
 }
