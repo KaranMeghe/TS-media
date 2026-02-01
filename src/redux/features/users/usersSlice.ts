@@ -4,13 +4,16 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { UsersProps } from './users.types';
 import { fetchUsers } from './thunks/fetchUsersThunks';
 import { addNewUser } from './thunks/addNewUserThunks';
+import { deleteUser } from './thunks/deleteUserThunks';
 
 const initialState: UsersProps = {
   users: [],
   isUserFetching: false,
   isUserCreating: false,
+  isDeleteUser: false,
   fetchError: null,
   createUserError: null,
+  deleteUserError: null,
 };
 const usersSlice = createSlice({
   name: 'users',
@@ -41,6 +44,19 @@ const usersSlice = createSlice({
     builder.addCase(addNewUser.rejected, (state, action) => {
       state.isUserCreating = false;
       state.createUserError = action.error.message ?? 'Something went wrong';
+    });
+
+    // Delete user
+    builder.addCase(deleteUser.pending, (state) => {
+      state.isDeleteUser = true;
+    });
+    builder.addCase(deleteUser.fulfilled, (state, action) => {
+      state.isDeleteUser = false;
+      state.users = state.users.filter((user) => user.id !== action.payload.id);
+    });
+    builder.addCase(deleteUser.rejected, (state, action) => {
+      state.isDeleteUser = false;
+      state.deleteUserError = action.error.message ?? 'Something went wrong';
     });
   },
 });
