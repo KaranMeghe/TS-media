@@ -1,16 +1,16 @@
 /** @format */
-
-import { fetchUsers } from '../../redux/features/users/thunks/fetchUsersThunks';
-import { useEffect } from 'react';
-import { useAppDispatch } from '../../redux/store/hooks';
+import Header from './Header';
+import RenderUsers from './RenderUsers';
 
 const UsersList = () => {
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    dispatch(fetchUsers());
-  }, [dispatch]);
-
-  return <div>Users List</div>;
+  return (
+    <>
+      <div className='flex flex-row justify-between items-center m-3 p-2'>
+        <Header />
+      </div>
+      <RenderUsers />
+    </>
+  );
 };
 
 export default UsersList;
