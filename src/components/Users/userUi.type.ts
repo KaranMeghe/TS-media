@@ -4,3 +4,9 @@ export interface RenderUsersProps {
   users: USER[];
   isUserFetching: boolean;
 }
+
+export interface UserItemProps {
+  user: USER;
+  isDeleteUser: boolean;
+  handleDeleteUser: (user: USER) => void;
+}
