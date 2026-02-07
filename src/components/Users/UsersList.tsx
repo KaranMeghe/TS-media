@@ -9,7 +9,7 @@ const UsersList = () => {
   return (
     <>
       <div className='flex flex-row justify-between items-center m-3 p-2'>
-        <Header isCreating={isUserCreating} error={createUserError} handleClick={handleAddClick}>
+        <Header isCreating={isUserCreating} error={createUserError} handleClick={handleAddClick} btnTxt='+ Add User'>
           Users
         </Header>
       </div>

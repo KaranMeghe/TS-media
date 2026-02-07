@@ -1,33 +1,32 @@
 /** @format */
-
-import type { UserItemProps } from './userUi.type';
 import Button from '../../ui/Button';
 import { GoTrash } from 'react-icons/go';
 import ExpandablePanel from '../../ui/Panel';
-import Albums from '../Albums/Albums';
+import type { AlbumItemProps } from './album.type';
 
-const UsersListItem = ({ user, isDeleteUser, handleDeleteUser }: UserItemProps) => {
+const AlbumItem = ({ album, isAlbumLoading }: AlbumItemProps) => {
   const header = (
-    <div className='mb-2 border rounded' key={user.id}>
+    <div className='my-2 border rounded'>
       <div className='flex p-2 justify-between items-center cursor-pointer'>
         <div className='flex gap-2'>
           <Button
-            isLoading={isDeleteUser}
-            onClick={() => handleDeleteUser(user)}
+            isLoading={isAlbumLoading}
+            onClick={() => console.log('album delete')}
             className='border rounded-full p-1 bg-red-500 text-white'>
             <GoTrash />
           </Button>
-          {user.name}
+          {album.title}
         </div>
       </div>
     </div>
   );
-
   return (
-    <ExpandablePanel header={header}>
-      <Albums user={user} />
-    </ExpandablePanel>
+    <div className='my-2'>
+      <ExpandablePanel header={header}>
+        <p>Photos</p>
+      </ExpandablePanel>
+    </div>
   );
 };
 
-export default UsersListItem;
+export default AlbumItem;

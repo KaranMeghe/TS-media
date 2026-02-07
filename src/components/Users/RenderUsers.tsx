@@ -9,10 +9,10 @@ const RenderUsers = () => {
   return (
     <>
       {isUserFetching ? (
-        <Skeleton times={users.length} />
+        <Skeleton times={users?.length} />
       ) : (
         users.map((user) => (
-          <UsersListItem user={user} isDeleteUser={isDeleteUser} handleDeleteUser={handleDeleteUser} />
+          <UsersListItem key={user.id} user={user} isDeleteUser={isDeleteUser} handleDeleteUser={handleDeleteUser} />
         ))
       )}
     </>

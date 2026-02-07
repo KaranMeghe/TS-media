@@ -1,5 +1,5 @@
 /** @format */
 
 export interface SkeletonProps {
-  times: number;
+  times: number | undefined;
 }
