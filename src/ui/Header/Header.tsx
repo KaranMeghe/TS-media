@@ -12,7 +12,7 @@ const Header = ({ isCreating, handleClick, error, children, btnTxt }: HeaderUIPr
         <Button isLoading={isCreating} className='border-2 py-1 px-2' onClick={handleClick}>
           {btnTxt}
         </Button>
-        {error && <p className='text-red-500 my-1'>{error}</p>}
+        {error && <p className='text-red-500 my-1'>{error || 'Something went wrong'}</p>}
       </div>
     </>
   );
