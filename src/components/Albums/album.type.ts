@@ -16,6 +16,5 @@ export interface AlbumData {
   userId: string;
 }
 export interface AlbumItemProps {
-  isAlbumLoading: boolean;
   album: AlbumData;
 }

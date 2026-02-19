@@ -18,7 +18,7 @@ const AlbumList = ({ user }: AlbumsProps) => {
       {isLoading ? (
         <Skeleton times={skeletonCount} />
       ) : (
-        data?.map((album) => <AlbumItem key={album.id} album={album} isAlbumLoading={isLoading} />)
+        data?.map((album) => <AlbumItem key={album.id} album={album} />)
       )}
     </div>
   );
