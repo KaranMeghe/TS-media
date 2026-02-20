@@ -3,9 +3,11 @@
 import type { UserItemProps } from './userUi.type';
 import Button from '../../ui/Button';
 import { GoTrash } from 'react-icons/go';
+import ExpandablePanel from '../../ui/Panel';
+import Albums from '../Albums/Albums';
 
 const UsersListItem = ({ user, isDeleteUser, handleDeleteUser }: UserItemProps) => {
-  return (
+  const header = (
     <div className='mb-2 border rounded' key={user.id}>
       <div className='flex p-2 justify-between items-center cursor-pointer'>
         <div className='flex gap-2'>
@@ -19,6 +21,12 @@ const UsersListItem = ({ user, isDeleteUser, handleDeleteUser }: UserItemProps) 
         </div>
       </div>
     </div>
+  );
+
+  return (
+    <ExpandablePanel header={header}>
+      <Albums user={user} />
+    </ExpandablePanel>
   );
 };
 
