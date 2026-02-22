@@ -14,7 +14,7 @@ const AlbumList = ({ user }: AlbumsProps) => {
   }
 
   return (
-    <div className='flex flex-col w-[80%] mx-auto'>
+    <div className='flex flex-col w-full max-w-6xl mx-auto px-4 gap-2'>
       {isLoading ? (
         <Skeleton times={skeletonCount} />
       ) : (

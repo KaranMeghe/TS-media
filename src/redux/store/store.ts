@@ -4,14 +4,16 @@ import { configureStore } from '@reduxjs/toolkit';
 import { usersReducer } from '../features/users/usersSlice';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { albumsApi } from '../api/albums/albumsApi';
+import { photosApi } from '../api/photos/photosApi';
 
 const store = configureStore({
   reducer: {
     users: usersReducer,
     [albumsApi.reducerPath]: albumsApi.reducer,
+    [photosApi.reducerPath]: photosApi.reducer,
   },
   middleware: (getDefaultMiddleware) => {
-    return getDefaultMiddleware().concat(albumsApi.middleware);
+    return getDefaultMiddleware().concat(albumsApi.middleware).concat(photosApi.middleware);
   },
 });
 

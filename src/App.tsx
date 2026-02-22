@@ -4,7 +4,7 @@ import UsersList from './components/Users/UsersList';
 
 function App() {
   return (
-    <div className='bg-gray-900 text-gray-400 h-screen container mx-auto'>
+    <div className='bg-slate-900 text-gray-100 min-h-screen w-full overflow-auto'>
       <UsersList />
     </div>
   );

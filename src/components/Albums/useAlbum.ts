@@ -12,8 +12,10 @@ const useAlbum = () => {
     addAlbum(user);
   };
 
-  const handleRemoveAlbum = (album: AlbumData) => {
-    removeAlbum(album);
+  const handleRemoveAlbum = async (album: AlbumData) => {
+    if (confirm('Are you sure you want to delete this Album ?')) {
+      await removeAlbum(album);
+    }
   };
 
   return { handleAddAlbum, handleRemoveAlbum, results, reslutsAlbum };
