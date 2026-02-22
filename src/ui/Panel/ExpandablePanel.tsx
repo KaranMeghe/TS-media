@@ -19,7 +19,17 @@ function ExpandablePanel({ header, children }: PanelProps) {
         <div className='flex flex-row items-center gap-3 text-slate-100'>{header}</div>
         <div className='text-slate-300'>{expanded ? <GoChevronDown size={20} /> : <GoChevronLeft size={20} />}</div>
       </div>
-      {expanded && <div className='p-4 border-t border-slate-700 bg-slate-800'>{children}</div>}
+
+      {/* Keep children mounted to avoid remounting fetches; only toggle visibility */}
+      <div
+        aria-hidden={!expanded}
+        className={
+          expanded
+            ? 'p-4 border-t border-slate-700 bg-slate-800 max-h-screen transition-max-height duration-300 ease-in-out'
+            : 'p-0 border-t border-slate-700 bg-slate-800 max-h-0 overflow-hidden transition-max-height duration-300 ease-in-out'
+        }>
+        {children}
+      </div>
     </div>
   );
 }

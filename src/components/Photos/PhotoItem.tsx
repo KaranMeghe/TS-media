@@ -12,6 +12,7 @@ const PhotoItem = ({ photo }: PhotoItemProps) => {
       <img
         src={photo.url}
         alt={`Photo ${photo.id}`}
+        loading='lazy'
         className='w-48 h-48 object-cover rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer'
       />
       <Button

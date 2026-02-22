@@ -6,7 +6,12 @@ import PhotoItem from './PhotoItem';
 
 /** @format */
 const PhotoList = ({ album }: PhotoListProps) => {
-  const { data, error, isLoading } = useFetchPhotosQuery(album.id);
+  const { data, error, isLoading } = useFetchPhotosQuery(album.id, {
+    // avoid refetching when the component remounts due to collapse/expand
+    refetchOnMountOrArgChange: false,
+    refetchOnFocus: false,
+    refetchOnReconnect: false,
+  });
   const skeletonCount = data?.length;
 
   {
