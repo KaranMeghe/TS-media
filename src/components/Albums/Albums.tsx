@@ -6,10 +6,10 @@ import AlbumTitle from './AlbumTitle';
 
 const Albums = ({ user }: AlbumsProps) => {
   return (
-    <>
+    <div className='py-6'>
       <AlbumTitle user={user} />
       <AlbumList user={user} />
-    </>
+    </div>
   );
 };
 

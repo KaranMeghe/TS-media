@@ -9,7 +9,7 @@ const AlbumTitle = ({ user }: AlbumTitleProps) => {
   console.log('Result', results);
 
   return (
-    <div className='flex justify-between'>
+    <div className='flex justify-between items-center mb-6 px-4'>
       <Header
         handleClick={() => handleAddAlbum(user)}
         isCreating={results.isLoading}

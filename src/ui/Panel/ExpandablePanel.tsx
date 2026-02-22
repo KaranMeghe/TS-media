@@ -12,14 +12,24 @@ function ExpandablePanel({ header, children }: PanelProps) {
   };
 
   return (
-    <div className='mb-2 border rounded w-full'>
-      <div className='flex p-2 justify-between items-center'>
-        <div className='flex flex-row items-center  gap-2'>{header}</div>
-        <div onClick={hadleClick} className='cursor-pointer'>
-          {expanded ? <GoChevronDown /> : <GoChevronLeft />}
-        </div>
+    <div className='mb-4 border border-slate-700 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-200 overflow-hidden bg-slate-800'>
+      <div
+        className='flex p-4 justify-between items-center bg-slate-700 hover:bg-slate-600 cursor-pointer'
+        onClick={hadleClick}>
+        <div className='flex flex-row items-center gap-3 text-slate-100'>{header}</div>
+        <div className='text-slate-300'>{expanded ? <GoChevronDown size={20} /> : <GoChevronLeft size={20} />}</div>
       </div>
-      {expanded && <div className='p-2 border-t'>{children}</div>}
+
+      {/* Keep children mounted to avoid remounting fetches; only toggle visibility */}
+      <div
+        aria-hidden={!expanded}
+        className={
+          expanded
+            ? 'p-4 border-t border-slate-700 bg-slate-800 max-h-screen transition-max-height duration-300 ease-in-out'
+            : 'p-0 border-t border-slate-700 bg-slate-800 max-h-0 overflow-hidden transition-max-height duration-300 ease-in-out'
+        }>
+        {children}
+      </div>
     </div>
   );
 }

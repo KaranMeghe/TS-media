@@ -30,30 +30,30 @@ const albumsApi = createApi({
         },
       }),
 
-      fetchAlbums: builder.query<AlbumData[], USER>({
-        query: (user) => {
+      fetchAlbums: builder.query<AlbumData[], string>({
+        query: (userId) => {
           return {
             url: '/albums',
             params: {
-              userId: user.id,
+              userId: userId,
             },
             method: 'GET',
           };
         },
-        providesTags: (_data, _error, user) => {
-          return [{ type: 'Album', id: user.id }];
+        providesTags: (_data, _error, userId) => {
+          return [{ type: 'Album', id: userId }];
         },
       }),
 
-      removeAlbum: builder.mutation<AlbumData, AlbumData>({
-        query: (album) => {
+      removeAlbum: builder.mutation<AlbumData, { album: AlbumData; user: USER }>({
+        query: ({ album }) => {
           return {
             url: `/albums/${album.id}`,
             method: 'DELETE',
           };
         },
-        invalidatesTags: (_data, _error, album) => {
-          return [{ type: 'Album', id: album.userId }];
+        invalidatesTags: (_data, _error, { user }) => {
+          return [{ type: 'Album', id: user.id }];
         },
       }),
     };

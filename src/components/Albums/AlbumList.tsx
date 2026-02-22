@@ -6,7 +6,11 @@ import Skeleton from '../Skeleton/Skeleton';
 import AlbumItem from './AlbumItem';
 
 const AlbumList = ({ user }: AlbumsProps) => {
-  const { data, error, isLoading } = useFetchAlbumsQuery(user);
+  const { data, error, isLoading } = useFetchAlbumsQuery(user.id, {
+    refetchOnMountOrArgChange: false,
+    refetchOnFocus: false,
+    refetchOnReconnect: false,
+  });
   const skeletonCount = data?.length;
 
   {
@@ -14,11 +18,11 @@ const AlbumList = ({ user }: AlbumsProps) => {
   }
 
   return (
-    <div className='flex flex-col w-[80%] mx-auto'>
+    <div className='flex flex-col w-full max-w-6xl mx-auto px-4 gap-2'>
       {isLoading ? (
         <Skeleton times={skeletonCount} />
       ) : (
-        data?.map((album) => <AlbumItem key={album.id} album={album} />)
+        data?.map((album) => <AlbumItem key={album.id} album={album} user={user} />)
       )}
     </div>
   );
